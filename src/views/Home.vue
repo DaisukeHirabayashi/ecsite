@@ -1,18 +1,20 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Home</h1>
+    <template v-for="{ id, name } in items">{{ id }}{{ name }}</template>
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
+  name: "home",
+  data() {
+    return {
+      items: [
+        { id: 1, name: "aaa" },
+        { id: 2, name: "bbb" },
+        { id: 3, name: "ccc" }
+      ]
+    };
   }
-}
+};
 </script>
