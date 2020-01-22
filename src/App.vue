@@ -28,9 +28,12 @@
         >
 
         <v-spacer />
-        <v-btn
+        <v-btn class="mr-3"
           ><v-icon>{{ "mdi-cart" }}</v-icon
           >カート</v-btn
+        >
+        <v-btn icon
+          ><v-icon>{{ "mdi-account-circle" }}</v-icon></v-btn
         >
       </v-app-bar>
 
@@ -146,11 +149,18 @@ export default {
         { icon: "home", text: "Home", link: "/" },
         { icon: "add", text: "買い物かご", link: "/register" },
         { icon: "add_box", text: "お気に入り", link: "/selectmaincompany" },
+        {
+          icon: "add_box",
+          text: "配達と返品について",
+          link: "/selectmaincompany"
+        },
         { divider: true },
         { heading: "検索" },
         { icon: "edit", text: "カテゴリ別", link: "/selectedit" },
-        { icon: "delete", text: "削除", link: "/delete" },
-        { divider: true }
+        { divider: true },
+        { heading: "その他" },
+        { icon: "edit", text: "About Us", link: "/selectedit" },
+        { icon: "delete", text: "Contact Us", link: "/delete" }
       ]
     };
   },
