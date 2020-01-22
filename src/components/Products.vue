@@ -1,8 +1,9 @@
 <template>
-  <v-card class="mt-4 mb-4 pa-3">
+  <v-card class="pa-5">
+    <v-card-title>{{ title }}</v-card-title>
     <v-layout row wrap>
-      <v-flex xs4 v-for="{ id, name } in items" :key="id">
-        <v-card class="grey lighten-3 ma-2">
+      <v-flex xs3 v-for="{ id, name } in items" :key="id">
+        <v-card class="grey lighten-3 ma-3">
           <v-card-text
             ><img
               src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
@@ -25,7 +26,8 @@
 export default {
   name: "Products",
   props: {
-    items: Array
+    items: Array,
+    title: String
   }
 };
 </script>

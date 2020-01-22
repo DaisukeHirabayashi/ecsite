@@ -28,6 +28,10 @@
         >
 
         <v-spacer />
+        <v-btn
+          ><v-icon>{{ "mdi-cart" }}</v-icon
+          >カート</v-btn
+        >
       </v-app-bar>
 
       <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
