@@ -14,15 +14,19 @@
           solo-inverted
           flat
           hide-details
-          @keydown.enter="serchCompany"
+          @keydown.enter="searchCompany"
           label="Search"
           v-model="keyword"
         />
-        <span>
-          <v-btn class="ml-3 mr-5" outlined color="green" @click="serchCompany"
-            >検索</v-btn
-          >
-        </span>
+
+        <v-btn
+          class="ml-3 mr-5"
+          outlined
+          color="green"
+          @click="searchItemsOnbutton"
+          >検索</v-btn
+        >
+
         <v-spacer />
       </v-app-bar>
 
@@ -127,7 +131,7 @@
 }
 </style>
 <script>
-import { ITEM_FIND } from "./store/mutation-types";
+import { ITEM_FIND, MESSAGE_UPDATE } from "./store/mutation-types";
 import { mapMutations } from "vuex";
 export default {
   data() {
@@ -136,11 +140,11 @@ export default {
       keyword: "",
       items: [
         { icon: "home", text: "Home", link: "/" },
-        { icon: "add", text: "登録", link: "/register" },
-        { icon: "add_box", text: "支社の登録", link: "/selectmaincompany" },
+        { icon: "add", text: "買い物かご", link: "/register" },
+        { icon: "add_box", text: "お気に入り", link: "/selectmaincompany" },
         { divider: true },
-        { heading: "企業の方向け" },
-        { icon: "edit", text: "編集", link: "/selectedit" },
+        { heading: "検索" },
+        { icon: "edit", text: "カテゴリ別", link: "/selectedit" },
         { icon: "delete", text: "削除", link: "/delete" },
         { divider: true }
       ]
@@ -149,16 +153,27 @@ export default {
   created() {},
   methods: {
     ...mapMutations({
-      ITEM_FIND
+      ITEM_FIND,
+      MESSAGE_UPDATE
     }),
-    serchCompany(event) {
+    searchCompany() {
       if (event.keyCode != 13) {
         // empty
       } else if (this.keyword == "") {
         // empty
       } else {
+        console.log(this.keyword);
         this.ITEM_FIND(this.keyword);
-        document.location.href = "./serchcompany";
+        document.location.href = "./serchitems";
+      }
+    },
+    searchItemsOnbutton() {
+      if (this.keyword == "") {
+        // empty
+      } else {
+        console.log(this.keyword);
+        this.ITEM_FIND(this.keyword);
+        document.location.href = "./serchitems";
       }
     }
   }
