@@ -55,7 +55,7 @@ export default {
         this.formData[2].formText.length &&
         this.formData[3].formText.length
       ) {
-        //empty
+        document.location.href = "./";
       } else if (!this.formData[0].formText.length) {
         alert("会社名を入力してください");
       } else if (!this.formData[1].formText.length) {
