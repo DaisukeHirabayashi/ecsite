@@ -149,7 +149,7 @@
 }
 </style>
 <script>
-import { ITEM_FIND } from "./store/mutation-types";
+import { ITEM_FIND, ACCOUNT_UPDATE } from "./store/mutation-types";
 import { mapMutations } from "vuex";
 export default {
   data() {
@@ -188,7 +188,7 @@ export default {
         ];
       } else {
         return [
-          { title: "ログアウト", link: "/logout" },
+          { title: "ログアウト", link: "/" },
           { title: "新規登録", link: "/register" }
         ];
       }
@@ -196,7 +196,8 @@ export default {
   },
   methods: {
     ...mapMutations({
-      ITEM_FIND
+      ITEM_FIND,
+      ACCOUNT_UPDATE
     }),
     searchCompany() {
       if (event.keyCode != 13) {
@@ -219,6 +220,10 @@ export default {
       }
     },
     moveUrl(url) {
+      if (url == "/") {
+        //ログアウトの処理
+        this.ACCOUNT_UPDATE({});
+      }
       document.location.href = url;
     }
   }

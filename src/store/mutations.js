@@ -2,7 +2,7 @@ import * as types from "./mutation-types"; //mutation-typesをImportします
 
 export const state = {
   finditem: "hello vuex",
-  account: []
+  account: {}
 };
 export const mutations = {
   [types.ITEM_FIND](state, payload) {
