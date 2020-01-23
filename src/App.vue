@@ -18,7 +18,6 @@
           label="Search"
           v-model="keyword"
         />
-
         <v-btn
           class="ml-3 mr-5"
           outlined
@@ -40,7 +39,7 @@
           </template>
           <v-list>
             <v-list-item
-              v-for="(item, index) in accountNav"
+              v-for="(item, index) in accountNavs"
               :key="index"
               @click="moveUrl(item.link)"
             >
@@ -49,7 +48,6 @@
           </v-list>
         </v-menu>
       </v-app-bar>
-
       <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
         <v-list dense class="grey lighten-4">
           <template v-for="(item, i) in items">
@@ -151,17 +149,13 @@
 }
 </style>
 <script>
-import { ITEM_FIND, MESSAGE_UPDATE } from "./store/mutation-types";
+import { ITEM_FIND } from "./store/mutation-types";
 import { mapMutations } from "vuex";
 export default {
   data() {
     return {
       drawer: false,
       keyword: "",
-      accountNav: [
-        { title: "ログイン", link: "/login" },
-        { title: "新規登録", link: "/register" }
-      ],
       items: [
         { icon: "home", text: "Home", link: "/" },
         { icon: "add", text: "買い物かご", link: "/cart" },
@@ -182,10 +176,27 @@ export default {
     };
   },
   created() {},
+  computed: {
+    user() {
+      return this.$store.state.account;
+    },
+    accountNavs() {
+      if (!this.user.uid) {
+        return [
+          { title: "ログイン", link: "/login" },
+          { title: "新規登録", link: "/register" }
+        ];
+      } else {
+        return [
+          { title: "ログアウト", link: "/logout" },
+          { title: "新規登録", link: "/register" }
+        ];
+      }
+    }
+  },
   methods: {
     ...mapMutations({
-      ITEM_FIND,
-      MESSAGE_UPDATE
+      ITEM_FIND
     }),
     searchCompany() {
       if (event.keyCode != 13) {

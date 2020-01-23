@@ -48,6 +48,8 @@
   </v-container>
 </template>
 <script>
+import { ACCOUNT_UPDATE } from "../store/mutation-types";
+import { mapMutations } from "vuex";
 export default {
   layout: "blank", // layouts/blank.vueを使用
   middleware: ["auth"],
@@ -62,20 +64,30 @@ export default {
       username: "",
       password: "",
       error: null,
-      loginStatus: false
+      loginStatus: {}
     };
   },
   methods: {
+    ...mapMutations({
+      ACCOUNT_UPDATE
+    }),
     async login() {
       this.error = null;
-      const axios = require("axios");
-      if (this.$refs.form.validate()) {
+      //const axios = require("axios");
+      if (!(this.password == "") && !(this.username == "")) {
         console.log("aaaa");
-        axios({
-          method: "POST",
-          url: "https://localhost",
-          data: { username: this.username, password: this.password }
-        }).then(response => (this.loginStatus = response.status));
+        //axiosの通信
+        // axios({
+        //   method: "POST",
+        //   url: "https://localhost",
+        //   data: { username: this.username, password: this.password }
+        // }).then(response => (this.loginStatus = response.status));
+        this.loginStatus.uid = "akkfhkahak";
+        this.loginStatus.username = this.username;
+        if (this.loginStatus.uid) {
+          this.ACCOUNT_UPDATE(this.loginStatus);
+          document.location.href = "./";
+        }
       }
     }
   }
