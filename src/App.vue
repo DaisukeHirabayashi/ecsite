@@ -147,20 +147,20 @@ export default {
       keyword: "",
       items: [
         { icon: "home", text: "Home", link: "/" },
-        { icon: "add", text: "買い物かご", link: "/register" },
-        { icon: "add_box", text: "お気に入り", link: "/selectmaincompany" },
+        { icon: "add", text: "買い物かご", link: "/cart" },
+        { icon: "add_box", text: "お気に入り", link: "/favorite" },
         {
           icon: "add_box",
           text: "配達と返品について",
-          link: "/selectmaincompany"
+          link: "/deliver_return"
         },
         { divider: true },
         { heading: "検索" },
-        { icon: "edit", text: "カテゴリ別", link: "/selectedit" },
+        { icon: "edit", text: "カテゴリ別", link: "/selectserch" },
         { divider: true },
         { heading: "その他" },
-        { icon: "edit", text: "About Us", link: "/selectedit" },
-        { icon: "delete", text: "Contact Us", link: "/delete" }
+        { icon: "edit", text: "About Us", link: "/aboutus" },
+        { icon: "delete", text: "Contact Us", link: "/contactus" }
       ]
     };
   },
