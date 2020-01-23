@@ -32,9 +32,22 @@
           ><v-icon>{{ "mdi-cart" }}</v-icon
           >カート</v-btn
         >
-        <v-btn icon
-          ><v-icon>{{ "mdi-account-circle" }}</v-icon></v-btn
-        >
+        <v-menu offset-y>
+          <template v-slot:activator="{ on }">
+            <v-btn v-on="on" icon>
+              <v-icon>{{ "mdi-account-circle" }}</v-icon>
+            </v-btn>
+          </template>
+          <v-list>
+            <v-list-item
+              v-for="(item, index) in accountNav"
+              :key="index"
+              @click="moveUrl(item.link)"
+            >
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
       </v-app-bar>
 
       <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
@@ -145,6 +158,10 @@ export default {
     return {
       drawer: false,
       keyword: "",
+      accountNav: [
+        { title: "ログイン", link: "/login" },
+        { title: "新規登録", link: "/register" }
+      ],
       items: [
         { icon: "home", text: "Home", link: "/" },
         { icon: "add", text: "買い物かご", link: "/cart" },
@@ -189,6 +206,9 @@ export default {
         this.ITEM_FIND(this.keyword);
         document.location.href = "./serchitems";
       }
+    },
+    moveUrl(url) {
+      document.location.href = url;
     }
   }
 };
