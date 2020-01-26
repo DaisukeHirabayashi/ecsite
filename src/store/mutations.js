@@ -5,6 +5,14 @@ export const state = {
   account: {},
   itemLength: 3,
   page: 1,
+  product: {
+    product_name: "coffee",
+    imgPath: "https://noteitemlist.netlify.com/pic/coffee.png",
+    amount: 800,
+    shipping_fee: 150,
+    model_number: 110,
+    zooFlag: false
+  },
   item: [
     {
       no: 1,

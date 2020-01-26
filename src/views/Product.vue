@@ -1,5 +1,19 @@
 <template>
   <div class="product">
-    <h1>商品情報</h1>
+    <ProductDetail :product="product" />
   </div>
 </template>
+<script>
+import ProductDetail from "../components/ProductDetail.vue";
+export default {
+  name: "product",
+  components: {
+    ProductDetail
+  },
+  data() {
+    return {
+      product: this.$store.state.product
+    };
+  }
+};
+</script>
