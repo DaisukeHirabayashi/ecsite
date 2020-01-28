@@ -79,20 +79,20 @@ export default {
       const axios = require("axios");
       if (!(this.password == "") && !(this.mailaddress == "")) {
         //axiosの通信;
-        (async () => { await axios({
+        (async () => {
+          await axios({
             method: "POST",
-              url: "http://104.198.57.17:5000/login",
-              data: { mailaddress: this.mailaddress, password: this.password }
-            })
+            url: "http://104.198.57.17:5000/login",
+            data: { mailaddress: this.mailaddress, password: this.password }
+          })
             .then(response => (this.loginStatus = response.data))
             .catch(error => console.log(error.response));
-            console.log(this.loginStatus);
-            if (this.loginStatus.uid) {
-              this.ACCOUNT_UPDATE(this.loginStatus);
-              document.location.href = "./";
-            }
+          console.log(this.loginStatus);
+          if (this.loginStatus.uid) {
+            this.ACCOUNT_UPDATE(this.loginStatus);
+            document.location.href = "./";
           }
-        )();
+        })();
       }
     }
   }
