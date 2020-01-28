@@ -20,8 +20,8 @@
               <v-layout row wrap>
                 <v-text-field
                   type="text"
-                  v-model="username"
-                  label="ログイン名"
+                  v-model="mailaddress"
+                  label="メールアドレス"
                   required
                 ></v-text-field>
               </v-layout>
@@ -60,8 +60,11 @@ export default {
   },
   data() {
     return {
+      headers: {
+        "Access-Control-Allow-Origin": "*"
+      },
       valid: true,
-      username: "",
+      mailaddress: "",
       password: "",
       error: null,
       loginStatus: {}
@@ -73,21 +76,23 @@ export default {
     }),
     async login() {
       this.error = null;
-      //const axios = require("axios");
-      if (!(this.password == "") && !(this.username == "")) {
-        console.log("aaaa");
-        //axiosの通信
-        // axios({
-        //   method: "POST",
-        //   url: "https://localhost",
-        //   data: { username: this.username, password: this.password }
-        // }).then(response => (this.loginStatus = response.status));
-        this.loginStatus.uid = "akkfhkahak";
-        this.loginStatus.username = this.username;
-        if (this.loginStatus.uid) {
-          this.ACCOUNT_UPDATE(this.loginStatus);
-          document.location.href = "./";
-        }
+      const axios = require("axios");
+      if (!(this.password == "") && !(this.mailaddress == "")) {
+        //axiosの通信;
+        (async () => { await axios({
+            method: "POST",
+              url: "http://104.198.57.17:5000/login",
+              data: { mailaddress: this.mailaddress, password: this.password }
+            })
+            .then(response => (this.loginStatus = response.data))
+            .catch(error => console.log(error.response));
+            console.log(this.loginStatus);
+            if (this.loginStatus.uid) {
+              this.ACCOUNT_UPDATE(this.loginStatus);
+              document.location.href = "./";
+            }
+          }
+        )();
       }
     }
   }
