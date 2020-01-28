@@ -47,6 +47,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
+        {{user.name}}
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
         <v-list dense class="grey lighten-4">
