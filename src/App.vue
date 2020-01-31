@@ -27,7 +27,7 @@
         >
 
         <v-spacer />
-        <v-btn class="mr-3"
+        <v-btn class="mr-3" @click="moveUrl(cartLink)"
           ><v-icon>{{ "mdi-cart" }}</v-icon
           >カート</v-btn
         >
@@ -47,7 +47,7 @@
             </v-list-item>
           </v-list>
         </v-menu>
-        {{user.name}}
+        {{ user.name }}
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" app clipped color="grey lighten-4">
         <v-list dense class="grey lighten-4">
@@ -173,7 +173,8 @@ export default {
         { heading: "その他" },
         { icon: "edit", text: "About Us", link: "/aboutus" },
         { icon: "delete", text: "Contact Us", link: "/contactus" }
-      ]
+      ],
+      cartLink: "/cart"
     };
   },
   created() {},
