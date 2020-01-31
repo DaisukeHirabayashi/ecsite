@@ -39,7 +39,7 @@
           <v-card style="height: 500px;">
             <div class="pa-10">価格:{{ product.amount }}円</div>
             <v-btn class="ma-10" @click="purchase()">購入する</v-btn>
-            <v-btn>カートに入れる</v-btn>
+            <v-btn @click="inCart()">カートに入れる</v-btn>
           </v-card>
         </v-col>
       </v-row>
@@ -73,6 +73,9 @@ export default {
   methods: {
     purchase() {
       document.location.href = "./purchase";
+    },
+    inCart() {
+      document.location.href = "./cart";
     }
   }
 };

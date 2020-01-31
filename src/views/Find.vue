@@ -24,6 +24,7 @@ export default {
       keyword: "finditem",
       itemsLength: "itemLength"
     }),
+    //そのページ内のアイテムを表示
     finditems() {
       if (this.page == 1) {
         if (this.itemsLength == 1) {
@@ -46,6 +47,7 @@ export default {
     ...mapMutations({
       PAGE_UPDATE
     }),
+    //検索ページの中のpaginationの移動
     pageMove() {
       this.PAGE_UPDATE(this.page);
       document.location.href = "./serchitems";
