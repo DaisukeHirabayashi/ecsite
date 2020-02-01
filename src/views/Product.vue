@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <ProductDetail :product="product" />
+    <ProductDetail :product="product" :itemsrc="itemsrc" />
   </div>
 </template>
 <script>
@@ -12,7 +12,8 @@ export default {
   },
   data() {
     return {
-      product: this.$store.state.product
+      product: this.$store.state.itemDetail,
+      itemsrc: this.$store.state.itemDetailSrc
     };
   }
 };
