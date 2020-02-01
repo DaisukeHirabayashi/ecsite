@@ -177,7 +177,6 @@ export default {
       cartLink: "/cart"
     };
   },
-  created() {},
   computed: {
     user() {
       return this.$store.state.account;

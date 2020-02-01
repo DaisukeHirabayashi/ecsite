@@ -3,13 +3,10 @@
     <v-card-title>{{ title }}</v-card-title>
     <v-layout row wrap>
       <!-- xsをいじると個数を変えられる -->
-      <v-flex xs3 v-for="{ id, name } in items" :key="id">
+      <v-flex xs3 v-for="{ id, name, image_path } in items" :key="id">
         <v-card class="grey lighten-3 ma-3">
           <v-card-text
-            ><img
-              src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-              width="100%"
-              alt=""
+            ><img :src="image_path" width="100%" alt=""
           /></v-card-text>
           <v-card-title>
             {{ name }}

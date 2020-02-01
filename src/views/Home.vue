@@ -8,7 +8,7 @@
       ></v-carousel-item>
     </v-carousel>
 
-    <v-card width="70%" class="mx-auto  p-3 ">
+    <v-card width="95%" class="mx-auto  p-3 ">
       <Products :title="title" :items="items" />
     </v-card>
   </div>
@@ -39,7 +39,7 @@ export default {
       title: "新着アイテム",
       itemsrc: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg"
+          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
         },
         {
           src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
@@ -52,6 +52,17 @@ export default {
         }
       ]
     };
+  },
+  created() {
+    const axios = require("axios");
+    (async () => {
+      await axios({
+        method: "POST",
+        url: "http://104.198.57.17:5000/pickup_newitem"
+      })
+        .then(response => (this.items = response.data))
+        .catch(error => console.log(error.response));
+    })();
   }
 };
 </script>
