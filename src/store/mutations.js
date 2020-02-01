@@ -5,6 +5,8 @@ export const state = {
   account: {},
   itemLength: 3,
   page: 1,
+  itemDetail: {},
+  itemDetailSrc: "",
   product: {
     product_name: "coffee",
     imgPath: "https://noteitemlist.netlify.com/pic/coffee.png",
@@ -484,5 +486,11 @@ export const mutations = {
   },
   [types.PAGE_UPDATE](state, payload) {
     state.page = payload;
+  },
+  [types.ITEMDETAIL_UPDATE](state, payload) {
+    state.itemDetail = payload;
+  },
+  [types.ITEMDETAILSRC_UPDATE](state, payload) {
+    state.itemDetailSrc = payload;
   }
 };
