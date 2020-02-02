@@ -1,6 +1,6 @@
 <template>
   <v-container class="mx-auto text-left p-3">
-    <v-card width="90%" class="mx-auto  p-3 ">
+    <v-card>
       <Products :title="keyword" :items="finditems" />
     </v-card>
     <v-pagination
@@ -41,7 +41,7 @@ export default {
     }
   },
   data() {
-    return { page: this.$store.state.page, items: this.$store.state.item };
+    return { page: this.$store.state.page, items: this.$store.state.items };
   },
   methods: {
     ...mapMutations({

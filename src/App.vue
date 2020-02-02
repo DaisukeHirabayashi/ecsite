@@ -150,13 +150,19 @@
 }
 </style>
 <script>
-import { ITEM_FIND, ACCOUNT_UPDATE } from "./store/mutation-types";
+import {
+  ITEM_FIND,
+  ACCOUNT_UPDATE,
+  ITEMS_UPDATE,
+  PAGELENGTH_UPDATE
+} from "./store/mutation-types";
 import { mapMutations } from "vuex";
 export default {
   data() {
     return {
       drawer: false,
       keyword: "",
+      //searchItems: [], //検索結果のアイテムを入れる
       items: [
         { icon: "home", text: "Home", link: "/" },
         { icon: "add", text: "買い物かご", link: "/cart" },
@@ -198,7 +204,9 @@ export default {
   methods: {
     ...mapMutations({
       ITEM_FIND,
-      ACCOUNT_UPDATE
+      ACCOUNT_UPDATE,
+      ITEMS_UPDATE,
+      PAGELENGTH_UPDATE
     }),
     searchCompany() {
       if (event.keyCode != 13) {
@@ -206,18 +214,47 @@ export default {
       } else if (this.keyword == "") {
         // empty
       } else {
-        console.log(this.keyword);
-        this.ITEM_FIND(this.keyword);
-        document.location.href = "./serchitems";
+        const axios = require("axios");
+        var searchItems = [];
+        (async () => {
+          await axios({
+            method: "POST",
+            url: "http://104.198.57.17:5000/keyword_retrieval",
+            data: { keyword: this.keyword }
+          })
+            .then(response => (searchItems = response.data))
+            .catch(error => console.log(error.response));
+          if (searchItems) {
+            this.ITEM_FIND(this.keyword);
+            this.ITEMS_UPDATE(searchItems.result);
+            this.PAGELENGTH_UPDATE(searchItems.page);
+            document.location.href = "./serchitems";
+          }
+        })();
       }
     },
     searchItemsOnbutton() {
       if (this.keyword == "") {
         // empty
       } else {
-        console.log(this.keyword);
-        this.ITEM_FIND(this.keyword);
-        document.location.href = "./serchitems";
+        const axios = require("axios");
+        var searchItems = [];
+        (async () => {
+          await axios({
+            method: "POST",
+            url: "http://104.198.57.17:5000/keyword_retrieval",
+            data: { keyword: this.keyword }
+          })
+            .then(response => (searchItems = response.data))
+            .catch(error => console.log(error.response));
+          if (searchItems) {
+            console.log(searchItems.result);
+            this.ITEM_FIND(this.keyword);
+            this.ITEMS_UPDATE(searchItems.result);
+            this.PAGELENGTH_UPDATE(searchItems.page);
+            document.location.href = "./serchitems";
+          }
+        })();
       }
     },
     moveUrl(url) {
