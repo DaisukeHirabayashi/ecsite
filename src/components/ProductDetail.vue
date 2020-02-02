@@ -51,12 +51,33 @@ export default {
     product: Object,
     itemsrc: Array
   },
+  data() {
+    return {
+      account: this.$store.state.account
+    };
+  },
   methods: {
     purchase() {
       document.location.href = "./purchase";
     },
     inCart() {
-      document.location.href = "./cart";
+      const axios = require("axios");
+      console.log(this.itemsrc[0].path);
+      (async () => {
+        await axios({
+          method: "POST",
+          url: "http://104.198.57.17:5000/register_cart_item",
+          data: {
+            uid: this.account.uid,
+            product_id: this.product.product_id,
+            image_path: this.itemsrc[0].path,
+            name: this.product.name
+          }
+        })
+          .then(response => console.log(response))
+          .catch(error => console.log(error.response));
+        document.location.href = "./cart";
+      })();
     }
   }
 };

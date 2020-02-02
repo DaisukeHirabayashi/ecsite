@@ -4,7 +4,10 @@
       <v-container>
         <v-list three-line>
           <v-subheader>ショッピングカート</v-subheader>
-          <template v-for="(item, index) in productItems">
+          <template v-if="!productItems"
+            >カートに入っているアイテムはありません</template
+          >
+          <template v-else v-for="(item, index) in productItems">
             <v-divider :key="index"></v-divider>
 
             <v-list-item :key="item.product_name">
@@ -34,8 +37,22 @@
 export default {
   data() {
     return {
-      productItems: this.$store.state.item
+      productItems: this.$store.state.item,
+      account: this.$store.state.account
     };
+  },
+  created() {
+    const axios = require("axios");
+    console.log(this.account.uid);
+    (async () => {
+      await axios({
+        method: "POST",
+        url: "http://104.198.57.17:5000/pickup_cartitem",
+        data: { uid: this.account.uid }
+      })
+        .then(response => console.log(response))
+        .catch(error => console.log(error.response));
+    })();
   },
   methods: {
     purchase(index) {
