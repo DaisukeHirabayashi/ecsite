@@ -87,9 +87,9 @@ export default {
           })
             .then(response => (this.loginStatus = response.data))
             .catch(error => console.log(error.response));
-          console.log(this.loginStatus);
-          if (this.loginStatus.uid) {
-            this.ACCOUNT_UPDATE(this.loginStatus);
+          console.log(this.loginStatus[0].uid);
+          if (this.loginStatus[0].uid) {
+            this.ACCOUNT_UPDATE(this.loginStatus[0]);
             document.location.href = "./";
           }
         })();
