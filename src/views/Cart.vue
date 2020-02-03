@@ -4,21 +4,19 @@
       <v-container>
         <v-list three-line>
           <v-subheader>ショッピングカート</v-subheader>
-          <template v-if="!productItems"
+          <template v-if="!cartItems"
             >カートに入っているアイテムはありません</template
           >
-          <template v-else v-for="(item, index) in productItems">
+          <template v-else v-for="(item, index) in cartItems">
             <v-divider :key="index"></v-divider>
 
-            <v-list-item :key="item.product_name">
+            <v-list-item :key="item.name">
               <v-list-item-avatar>
-                <v-img :src="item.imgPath"></v-img>
+                <v-img :src="item.image_path"></v-img>
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title
-                  v-html="item.product_name"
-                ></v-list-item-title>
+                <v-list-item-title v-html="item.name"></v-list-item-title>
                 <v-list-item-subtitle class="text-right"
                   ><v-btn text x-small @click="purchase(index)">購入する</v-btn
                   ><v-btn class="ml-2" text x-small
@@ -37,8 +35,8 @@
 export default {
   data() {
     return {
-      productItems: this.$store.state.item,
-      account: this.$store.state.account
+      account: this.$store.state.account,
+      cartItems: []
     };
   },
   created() {
@@ -50,7 +48,7 @@ export default {
         url: "http://104.198.57.17:5000/pickup_cartitem",
         data: { uid: this.account.uid }
       })
-        .then(response => console.log(response))
+        .then(response => (this.cartItems = response.data))
         .catch(error => console.log(error.response));
     })();
   },
