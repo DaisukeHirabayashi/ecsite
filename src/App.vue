@@ -4,10 +4,10 @@
       <v-app-bar app clipped-left color="amber">
         <v-app-bar-nav-icon @click="drawer = !drawer" />
         <!-- 検索機能を今後つけたようにおいてあります -->
-        <span class="title ml-3 mr-5"
+        <span class="title ml-3 mr-11"
           ><div class="linkbox">
             <a href="/"></a>
-            <p>Fashion&nbsp;<span class="font-weight-light">Search</span></p>
+            <p>Music&nbsp;<span class="font-weight-light">for You</span></p>
           </div></span
         >
         <v-text-field
@@ -165,20 +165,13 @@ export default {
       //searchItems: [], //検索結果のアイテムを入れる
       items: [
         { icon: "home", text: "Home", link: "/" },
-        { icon: "add", text: "買い物かご", link: "/cart" },
-        { icon: "add_box", text: "お気に入り", link: "/favorite" },
-        {
-          icon: "add_box",
-          text: "配達と返品について",
-          link: "/deliver_return"
-        },
+        { icon: "mdi-cart", text: "買い物かご", link: "/cart" },
         { divider: true },
         { heading: "検索" },
         { icon: "edit", text: "カテゴリ別", link: "/selectserch" },
         { divider: true },
         { heading: "その他" },
-        { icon: "edit", text: "About Us", link: "/aboutus" },
-        { icon: "delete", text: "Contact Us", link: "/contactus" }
+        { icon: "mdi-periscope", text: "Contact Us", link: "/contactus" }
       ],
       cartLink: "/cart"
     };
