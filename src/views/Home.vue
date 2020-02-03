@@ -30,25 +30,15 @@ export default {
         { id: 4, name: "ddd", show: false },
         { id: 5, name: "ddd", show: false },
         { id: 6, name: "ddd", show: false },
-        { id: 7, name: "ddd", show: false },
-        { id: 8, name: "ddd", show: false },
-        { id: 9, name: "ddd", show: false },
-        { id: 10, name: "ddd", show: false },
-        { id: 11, name: "ddd", show: false }
+        { id: 7, name: "ddd", show: false }
       ],
       title: "新着アイテム",
       itemsrc: [
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
+          src: "/home_src/alexa.jpg"
         },
         {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg"
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg"
+          src: "/home_src/deliver.png"
         }
       ]
     };
