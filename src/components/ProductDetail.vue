@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-row>
-      <v-col v-for="n in 2" :key="n" sm="5" style="height: 500px;">
+      <v-col v-for="n in 2" :key="n" cols="5" style="height: 500px;">
         <v-card style="height: 500px;">
           <v-carousel v-if="n == 1" height="500px" hide-delimiters>
             <v-carousel-item
@@ -12,7 +12,6 @@
           </v-carousel>
           <div v-else class=" text-left ">
             <h3 class="ml-2">{{ product.name }}</h3>
-            <!-- <v-avatar color="grey" class="mr-4"></v-avatar> -->
             <v-icon
               class="ml-2"
               align="start"
@@ -32,7 +31,7 @@
           </div>
         </v-card>
       </v-col>
-      <v-col sm="2" style="height: 500px;">
+      <v-col cols="2" style="height: 500px;">
         <v-card style="height: 500px;">
           <div class="pa-10">価格:{{ product.price }}円</div>
           <v-btn class="ma-10" @click="purchase()">購入する</v-btn>

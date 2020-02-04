@@ -3,37 +3,61 @@
   <div class="product">
     <v-container class="grey lighten-5">
       <ProductDetail :product="product" :itemsrc="itemsrc" />
-      <Review :datacollection="datacollection" />
+      <v-card>
+        <v-row>
+          <v-col cols="6">
+            <Gragh :soundData="soundDatas" />
+          </v-col>
+          <v-col cols="6">
+            <Review />
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
   </div>
 </template>
 <script>
 import ProductDetail from "../components/ProductDetail.vue";
 import Review from "../components/Review.vue";
+import Gragh from "../components/Gragh.vue";
 export default {
   name: "product",
   components: {
     ProductDetail,
-    Review
+    Review,
+    Gragh
   },
   data() {
     return {
       product: this.$store.state.itemDetail,
       itemsrc: this.$store.state.itemDetailSrc,
-      datacollection: {
-        labels: ["聴き心地", "遮音性", "見た目", "付け心地", "使いやすさ"],
-        datasets: [
-          {
-            label: "Aさん",
-            data: [100, 72, 86, 74, 86],
-            backgroundColor: "RGBA(225,95,150, 0.5)",
-            borderColor: "RGBA(225,95,150, 1)",
-            borderWidth: 1,
-            pointBackgroundColor: "RGB(46,106,177)"
-          }
-        ]
-      }
+      review: [{ sound: "" }]
     };
+  },
+  created() {
+    const axios = require("axios");
+    (async () => {
+      await axios({
+        method: "POST",
+        url: "http://104.198.57.17:5000/get_review_average",
+        data: {
+          product_id: this.product.product_id
+        }
+      })
+        .then(response => (this.review = response.data))
+        .catch(error => console.log(error.response));
+    })();
+  },
+  computed: {
+    soundDatas() {
+      return [
+        this.review[0].sound,
+        this.review[0].blocking,
+        this.review[0].visual,
+        this.review[0].comfortable,
+        this.review[0].usability
+      ];
+    }
   }
 };
 </script>
