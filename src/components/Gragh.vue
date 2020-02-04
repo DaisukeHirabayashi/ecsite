@@ -1,5 +1,4 @@
 <script>
-//import VueCharts from "vue-chartjs";
 import { Radar, mixins } from "vue-chartjs";
 export default {
   mixins: [Radar, mixins.reactiveData],
