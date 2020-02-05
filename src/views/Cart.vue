@@ -1,6 +1,9 @@
 <template>
   <v-app>
     <div class="cart">
+      <v-overlay :value="overlay">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
       <v-container>
         <v-list three-line>
           <v-subheader>ショッピングカート</v-subheader>
@@ -18,7 +21,7 @@
               <v-list-item-content>
                 <v-list-item-title v-html="item.name"></v-list-item-title>
                 <v-list-item-subtitle class="text-right"
-                  ><v-btn text x-small @click="purchase(index)">購入する</v-btn
+                  ><v-btn text x-small @click="purchase()">購入する</v-btn
                   ><v-btn
                     class="ml-2"
                     text
@@ -40,7 +43,8 @@ export default {
   data() {
     return {
       account: this.$store.state.account,
-      cartItems: []
+      cartItems: [],
+      overlay: true
     };
   },
   created() {
@@ -56,9 +60,16 @@ export default {
         .catch(error => console.log(error.response));
     })();
   },
+  mounted() {
+    this.$nextTick(function() {
+      // ビュー全体がレンダリングされた後にのみ実行されるコード
+      setTimeout(() => {
+        this.overlay = false;
+      }, 2000);
+    });
+  },
   methods: {
-    purchase(index) {
-      console.log(index);
+    purchase() {
       document.location.href = "./purchase";
     },
     deleteItem(product_id) {

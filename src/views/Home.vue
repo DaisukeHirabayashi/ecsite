@@ -1,5 +1,8 @@
 <template>
   <div class="home">
+    <v-overlay :value="overlay">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
     <v-carousel height="300px" hide-delimiters>
       <v-carousel-item
         v-for="(item, i) in itemsrc"
@@ -40,7 +43,8 @@ export default {
         {
           src: "/home_src/deliver.png"
         }
-      ]
+      ],
+      overlay: true
     };
   },
   created() {
@@ -53,6 +57,14 @@ export default {
         .then(response => (this.items = response.data))
         .catch(error => console.log(error.response));
     })();
+  },
+  mounted() {
+    this.$nextTick(function() {
+      // ビュー全体がレンダリングされた後にのみ実行されるコード
+      setTimeout(() => {
+        this.overlay = false;
+      }, 2000);
+    });
   }
 };
 </script>
