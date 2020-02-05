@@ -1,13 +1,16 @@
 <template>
   <v-app>
     <div id="app">
+      <v-overlay :value="overlay">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
       <v-app-bar app clipped-left color="amber">
         <v-app-bar-nav-icon @click="drawer = !drawer" />
         <!-- 検索機能を今後つけたようにおいてあります -->
         <span class="title ml-3 mr-11"
           ><div class="linkbox">
             <a href="/"></a>
-            <p>Music&nbsp;<span class="font-weight-light">for You</span></p>
+            <p>Sound&nbsp;<span class="font-weight-light">for You</span></p>
           </div></span
         >
         <v-text-field
@@ -139,6 +142,7 @@
   width: 100%;
 }
 .linkbox p {
+  margin-top: 12px;
   margin-bottom: 0;
 }
 
@@ -162,6 +166,7 @@ export default {
     return {
       drawer: false,
       keyword: "",
+      overlay: false,
       //searchItems: [], //検索結果のアイテムを入れる
       items: [
         { icon: "home", text: "Home", link: "/" },
@@ -207,6 +212,7 @@ export default {
       } else if (this.keyword == "") {
         // empty
       } else {
+        this.overlay = true;
         const axios = require("axios");
         var searchItems = [];
         (async () => {
@@ -230,6 +236,7 @@ export default {
       if (this.keyword == "") {
         // empty
       } else {
+        this.overlay = true;
         const axios = require("axios");
         var searchItems = [];
         (async () => {

@@ -7,6 +7,26 @@
         <v-row>
           <v-col cols="6">
             <Gragh :soundData="soundDatas" />
+            <v-container ml-3 pa-0>
+              <strong>音質について</strong>
+              <v-layout justify-center>
+                <v-progress-linear
+                  color="success"
+                  height="25"
+                  :value="sum"
+                  background-color="primary"
+                  reactive
+                ></v-progress-linear></v-layout
+              ><strong>
+                重低音<v-icon color="green">mdi-square</v-icon>:{{
+                  review.bass
+                }}</strong
+              ><strong>
+                中高音<v-icon color="primary">mdi-square</v-icon>:{{
+                  review.midhigh
+                }}</strong
+              >
+            </v-container>
           </v-col>
           <v-col cols="6">
             <Review />
@@ -31,7 +51,8 @@ export default {
     return {
       product: this.$store.state.itemDetail,
       itemsrc: this.$store.state.itemDetailSrc,
-      review: [{ sound: "" }]
+      review: { sound: 3 },
+      power: 30
     };
   },
   created() {
@@ -51,12 +72,19 @@ export default {
   computed: {
     soundDatas() {
       return [
-        this.review[0].sound,
-        this.review[0].blocking,
-        this.review[0].visual,
-        this.review[0].comfortable,
-        this.review[0].usability
+        this.review.sound,
+        this.review.blocking,
+        this.review.visual,
+        this.review.comfortable,
+        this.review.usability
       ];
+    },
+    sum() {
+      return (
+        (this.review.bass /
+          parseFloat(this.review.bass + this.review.midhigh)) *
+        100.0
+      );
     }
   }
 };

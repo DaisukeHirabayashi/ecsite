@@ -1,6 +1,6 @@
 <template>
-  <v-app>
-    <v-row>
+  <v-app style="height: 550px;">
+    <v-row style="flex-grow:0">
       <v-col v-for="n in 2" :key="n" cols="5" style="height: 500px;">
         <v-card style="height: 500px;">
           <v-carousel v-if="n == 1" height="500px" hide-delimiters>

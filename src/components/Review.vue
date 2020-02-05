@@ -55,6 +55,20 @@
           thumb-label="always"
           ticks
         ></v-slider>
+        <v-layout justify-center>
+          <v-radio-group v-model="bass" row>
+            <v-radio value="0">
+              <template v-slot:label>
+                <strong class="success--text">重低音</strong>
+              </template>
+            </v-radio>
+            <v-radio value="1">
+              <template v-slot:label>
+                <strong class="primary--text">中高音</strong>
+              </template>
+            </v-radio>
+          </v-radio-group>
+        </v-layout>
       </v-card-text>
       <v-btn @click="registerReview()">レビューを送信する</v-btn>
     </v-app>
@@ -73,7 +87,8 @@ export default {
       sound: 3,
       visual: 3,
       comfortable: 3,
-      blocking: 3
+      blocking: 3,
+      bass: "0"
     };
   },
   methods: {
@@ -90,7 +105,8 @@ export default {
             sound: this.sound,
             visual: this.visual,
             comfortable: this.comfortable,
-            blocking: this.blocking
+            blocking: this.blocking,
+            bass: this.bass
           }
         })
           .then(response => (this.info = response.data))

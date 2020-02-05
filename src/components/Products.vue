@@ -11,6 +11,7 @@
           <v-card-title>
             {{ item.name }}
           </v-card-title>
+          <v-card-subtitle text-left> {{ item.price }}円 </v-card-subtitle>
           <v-card-actions>
             <v-btn @click="moveDetailItem(item)">Purchase</v-btn>
             <v-spacer></v-spacer>
