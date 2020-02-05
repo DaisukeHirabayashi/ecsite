@@ -19,7 +19,11 @@
                 <v-list-item-title v-html="item.name"></v-list-item-title>
                 <v-list-item-subtitle class="text-right"
                   ><v-btn text x-small @click="purchase(index)">購入する</v-btn
-                  ><v-btn class="ml-2" text x-small
+                  ><v-btn
+                    class="ml-2"
+                    text
+                    x-small
+                    @click="deleteItem(item.product_id)"
                     >削除</v-btn
                   ></v-list-item-subtitle
                 >
@@ -56,6 +60,19 @@ export default {
     purchase(index) {
       console.log(index);
       document.location.href = "./purchase";
+    },
+    deleteItem(product_id) {
+      const axios = require("axios");
+      (async () => {
+        await axios({
+          method: "POST",
+          url: "http://104.198.57.17:5000/delete_cartitem",
+          data: { uid: this.account.uid, product_id }
+        })
+          .then(response => (this.cartItems = response.data))
+          .catch(error => console.log(error.response));
+        document.location.href = "./cart";
+      })();
     }
   }
 };
