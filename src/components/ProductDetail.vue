@@ -59,7 +59,6 @@ export default {
     },
     inCart() {
       const axios = require("axios");
-      console.log(this.itemsrc[0].path);
       (async () => {
         await axios({
           method: "POST",
@@ -71,8 +70,8 @@ export default {
             name: this.product.name
           }
         })
-          .then(response => console.log(response))
-          .catch(error => console.log(error.response));
+          .then()
+          .catch();
         document.location.href = "./cart";
       })();
     }

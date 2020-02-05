@@ -86,8 +86,7 @@ export default {
             data: { mailaddress: this.mailaddress, password: this.password }
           })
             .then(response => (this.loginStatus = response.data))
-            .catch(error => console.log(error.response));
-          console.log(this.loginStatus[0].uid);
+            .catch();
           if (this.loginStatus[0].uid) {
             this.ACCOUNT_UPDATE(this.loginStatus[0]);
             document.location.href = "./";

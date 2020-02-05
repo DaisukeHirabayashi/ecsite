@@ -66,7 +66,7 @@ export default {
         }
       })
         .then(response => (this.review = response.data))
-        .catch(error => console.log(error.response));
+        .catch();
     })();
   },
   computed: {

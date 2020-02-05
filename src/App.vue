@@ -222,7 +222,7 @@ export default {
             data: { keyword: this.keyword }
           })
             .then(response => (searchItems = response.data))
-            .catch(error => console.log(error.response));
+            .catch();
           if (searchItems) {
             this.ITEM_FIND(this.keyword);
             this.ITEMS_UPDATE(searchItems.result);
@@ -246,9 +246,8 @@ export default {
             data: { keyword: this.keyword }
           })
             .then(response => (searchItems = response.data))
-            .catch(error => console.log(error.response));
+            .catch();
           if (searchItems) {
-            console.log(searchItems.result);
             this.ITEM_FIND(this.keyword);
             this.ITEMS_UPDATE(searchItems.result);
             this.PAGELENGTH_UPDATE(searchItems.page);

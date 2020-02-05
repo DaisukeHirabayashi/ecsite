@@ -52,8 +52,7 @@ export default {
           data: { product_id: item.product_id }
         })
           .then(response => (this.itemPath = response.data))
-          .catch(error => console.log(error.response));
-        console.log(this.itemPath[0].path);
+          .catch();
         if (this.itemPath) {
           this.ITEMDETAIL_UPDATE(item);
           this.ITEMDETAILSRC_UPDATE(this.itemPath);

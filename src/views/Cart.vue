@@ -49,7 +49,6 @@ export default {
   },
   created() {
     const axios = require("axios");
-    console.log(this.account.uid);
     (async () => {
       await axios({
         method: "POST",
@@ -57,7 +56,7 @@ export default {
         data: { uid: this.account.uid }
       })
         .then(response => (this.cartItems = response.data))
-        .catch(error => console.log(error.response));
+        .catch();
     })();
   },
   mounted() {
@@ -81,7 +80,7 @@ export default {
           data: { uid: this.account.uid, product_id }
         })
           .then(response => (this.cartItems = response.data))
-          .catch(error => console.log(error.response));
+          .catch();
         document.location.href = "./cart";
       })();
     }

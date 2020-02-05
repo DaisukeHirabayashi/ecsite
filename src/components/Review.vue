@@ -110,7 +110,7 @@ export default {
           }
         })
           .then(response => (this.info = response.data))
-          .catch(error => console.log(error.response));
+          .catch();
         if (this.info == "success") {
           alert("登録が完了しました");
         }

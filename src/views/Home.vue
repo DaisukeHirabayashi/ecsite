@@ -55,7 +55,7 @@ export default {
         url: "http://104.198.57.17:5000/pickup_newitem"
       })
         .then(response => (this.items = response.data))
-        .catch(error => console.log(error.response));
+        .catch();
     })();
   },
   mounted() {
