@@ -42,6 +42,8 @@
   </v-app>
 </template>
 <script>
+import { PURCHASEITEM_UPDATE } from "../store/mutation-types";
+import { mapMutations } from "vuex";
 export default {
   name: "ProductDetail",
   props: {
@@ -55,6 +57,9 @@ export default {
     };
   },
   methods: {
+    ...mapMutations({
+      PURCHASEITEM_UPDATE
+    }),
     purchase() {
       if (!this.account.uid) {
         var res = confirm("ログインしてください");
@@ -63,6 +68,7 @@ export default {
           window.location.href = "./login";
         }
       } else {
+        this.PURCHASEITEM_UPDATE(this.product.product_id);
         document.location.href = "./purchase";
       }
     },

@@ -28,10 +28,7 @@ export default {
           displayname: "電話番号",
           formText: "",
           placeholder: "Phone Number",
-          rules: [
-            v => !!v || "Phone Number is required",
-            v => /[0-9]+-+[0-9]+-+[0-9]+/.test(v) || "PhoneNumber must be valid"
-          ]
+          rules: [v => !!v || "Phone Number is required"]
         }
       ]
     };

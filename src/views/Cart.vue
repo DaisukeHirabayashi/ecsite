@@ -21,7 +21,8 @@
               <v-list-item-content>
                 <v-list-item-title v-html="item.name"></v-list-item-title>
                 <v-list-item-subtitle class="text-right"
-                  ><v-btn text x-small @click="purchase()">購入する</v-btn
+                  ><v-btn text x-small @click="purchase(item.product_id)"
+                    >購入する</v-btn
                   ><v-btn
                     class="ml-2"
                     text
@@ -39,6 +40,9 @@
   </v-app>
 </template>
 <script>
+import { PURCHASEITEM_UPDATE } from "../store/mutation-types";
+import { mapMutations } from "vuex";
+
 export default {
   data() {
     return {
@@ -68,7 +72,11 @@ export default {
     });
   },
   methods: {
-    purchase() {
+    ...mapMutations({
+      PURCHASEITEM_UPDATE
+    }),
+    purchase(product_id) {
+      this.PURCHASEITEM_UPDATE(product_id);
       document.location.href = "./purchase";
     },
     deleteItem(product_id) {
@@ -77,7 +85,7 @@ export default {
         await axios({
           method: "POST",
           url: "http://104.198.57.17:5000/delete_cartitem",
-          data: { uid: this.account.uid, product_id }
+          data: { uid: this.account.uid, product_id: product_id }
         })
           .then(response => (this.cartItems = response.data))
           .catch();
