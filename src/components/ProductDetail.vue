@@ -12,10 +12,10 @@
           </v-carousel>
           <div v-else class=" text-left ">
             <h3 class="ml-2">{{ product.name }}</h3>
-            <v-icon
+            総合評価<v-icon
               class="ml-2"
               align="start"
-              v-for="i in 3"
+              v-for="i in average"
               :key="i"
               small
               color="yellow"
@@ -46,7 +46,8 @@ export default {
   name: "ProductDetail",
   props: {
     product: Object,
-    itemsrc: Array
+    itemsrc: Array,
+    average: Number
   },
   data() {
     return {
@@ -55,25 +56,41 @@ export default {
   },
   methods: {
     purchase() {
-      document.location.href = "./purchase";
+      if (!this.account.uid) {
+        var res = confirm("ログインしてください");
+        if (res == true) {
+          // OKなら移動
+          window.location.href = "./login";
+        }
+      } else {
+        document.location.href = "./purchase";
+      }
     },
     inCart() {
-      const axios = require("axios");
-      (async () => {
-        await axios({
-          method: "POST",
-          url: "http://104.198.57.17:5000/register_cart_item",
-          data: {
-            uid: this.account.uid,
-            product_id: this.product.product_id,
-            image_path: this.itemsrc[0].path,
-            name: this.product.name
-          }
-        })
-          .then()
-          .catch();
-        document.location.href = "./cart";
-      })();
+      if (!this.account.uid) {
+        var res = confirm("ログインしてください");
+        if (res == true) {
+          // OKなら移動
+          window.location.href = "./login";
+        }
+      } else {
+        const axios = require("axios");
+        (async () => {
+          await axios({
+            method: "POST",
+            url: "http://104.198.57.17:5000/register_cart_item",
+            data: {
+              uid: this.account.uid,
+              product_id: this.product.product_id,
+              image_path: this.itemsrc[0].path,
+              name: this.product.name
+            }
+          })
+            .then()
+            .catch();
+          document.location.href = "./cart";
+        })();
+      }
     }
   }
 };

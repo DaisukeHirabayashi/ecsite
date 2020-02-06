@@ -6,7 +6,7 @@
         <v-layout wrap class="ml-4">
           <v-list-item-content>
             <v-list-item-title>会社名</v-list-item-title>
-            <v-list-item-subtitle>OFA株式会社</v-list-item-subtitle>
+            <v-list-item-subtitle>AIT</v-list-item-subtitle>
           </v-list-item-content>
         </v-layout>
         <v-layout wrap class="ml-4">
@@ -32,6 +32,14 @@
             <v-list-item-title>企業概念</v-list-item-title>
             <v-list-item-text
               >私たちは人々の暮らしがより良くなる会社を目指しています。</v-list-item-text
+            >
+          </v-list-item-content>
+        </v-layout>
+        <v-layout wrap class="ml-4">
+          <v-list-item-content>
+            <v-list-item-title>このサイトについて</v-list-item-title>
+            <v-list-item-text
+              >イヤホン選びに特化した、多くあるイヤホンの中で値段と評価に沿って、欲しいイヤホンを探すためのサイトです</v-list-item-text
             >
           </v-list-item-content>
         </v-layout>
