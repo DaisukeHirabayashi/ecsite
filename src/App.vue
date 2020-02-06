@@ -142,7 +142,7 @@
   width: 100%;
 }
 .linkbox p {
-  margin-top: 12px;
+  margin-top: 8px;
   margin-bottom: 0;
 }
 
