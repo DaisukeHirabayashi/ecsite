@@ -7,7 +7,8 @@ export const state = {
   page: 1,
   itemDetail: {},
   itemDetailSrc: "",
-  items: []
+  items: [],
+  purchaseItemId: 3
 };
 export const mutations = {
   [types.ITEM_FIND](state, payload) {
@@ -30,5 +31,8 @@ export const mutations = {
   },
   [types.PAGELENGTH_UPDATE](state, payload) {
     state.itemLength = payload;
+  },
+  [types.PURCHASEITEM_UPDATE](state, payload) {
+    state.purchaseItemId = payload;
   }
 };

@@ -72,7 +72,9 @@ export default {
       e1: 1,
       steps: 4,
       address: "",
-      smallStep: ["配達先住所", "お届け希望日時", "電話番号", "確認画面"]
+      smallStep: ["配達先住所", "お届け希望日時", "電話番号", "確認画面"],
+      purchaseItemId: this.$store.state.purchaseItemId,
+      account: this.$store.state.account
     };
   },
 
@@ -91,7 +93,17 @@ export default {
       this.e1 = n - 1;
     },
     complete() {
-      document.location.href = "./success";
+      const axios = require("axios");
+      (async () => {
+        await axios({
+          method: "POST",
+          url: "http://104.198.57.17:5000/delete_cartitem",
+          data: { uid: this.account.uid, product_id: this.purchaseItemId }
+        })
+          .then(response => (this.cartItems = response.data))
+          .catch();
+        document.location.href = "./success";
+      })();
     }
   }
 };

@@ -5,3 +5,4 @@ export const PAGE_UPDATE = "PAGE_UPDATE";
 export const ITEMDETAIL_UPDATE = "ITEMDETAIL_UPDATE"; //詳細ページにとぶ際のアイテム
 export const ITEMDETAILSRC_UPDATE = "ITEMDETAILSRC_UPDATE"; //詳細ページにとぶ際の画像アイテム
 export const PAGELENGTH_UPDATE = "PAGELENGTH_UPDATE"; //詳細ページにとぶ際の画像アイテム
+export const PURCHASEITEM_UPDATE = "PURCHASEITEM_UPDATE";

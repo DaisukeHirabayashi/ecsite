@@ -13,7 +13,9 @@
           </v-card-title>
           <v-card-subtitle text-left> {{ item.price }}円 </v-card-subtitle>
           <v-card-actions>
-            <v-btn @click="moveDetailItem(item)">Purchase</v-btn>
+            <v-btn color="success" @click="moveDetailItem(item)"
+              >購入する</v-btn
+            >
             <v-spacer></v-spacer>
           </v-card-actions>
         </v-card>
