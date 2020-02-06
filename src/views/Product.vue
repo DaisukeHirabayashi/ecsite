@@ -2,7 +2,7 @@
   <!-- 商品の詳細を出しているページのvue -->
   <div class="product">
     <v-container class="grey lighten-5">
-      <ProductDetail :product="product" :itemsrc="itemsrc" />
+      <ProductDetail :product="product" :itemsrc="itemsrc" :average="average" />
       <v-card>
         <v-row>
           <v-col cols="6">
@@ -52,7 +52,7 @@ export default {
       product: this.$store.state.itemDetail,
       itemsrc: this.$store.state.itemDetailSrc,
       review: { sound: 3 },
-      power: 30
+      average: 3
     };
   },
   created() {
@@ -67,6 +67,14 @@ export default {
       })
         .then(response => (this.review = response.data))
         .catch();
+      this.average = Math.round(
+        (this.review.sound +
+          this.review.blocking +
+          this.review.visual +
+          this.review.comfortable +
+          this.review.usability) /
+          5.0
+      );
     })();
   },
   computed: {

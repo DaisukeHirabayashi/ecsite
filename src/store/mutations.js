@@ -7,15 +7,7 @@ export const state = {
   page: 1,
   itemDetail: {},
   itemDetailSrc: "",
-  items: [],
-  product: {
-    product_name: "coffee",
-    imgPath: "https://noteitemlist.netlify.com/pic/coffee.png",
-    amount: 800,
-    shipping_fee: 150,
-    model_number: 110,
-    zooFlag: false
-  }
+  items: []
 };
 export const mutations = {
   [types.ITEM_FIND](state, payload) {

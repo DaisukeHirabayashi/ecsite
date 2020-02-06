@@ -93,28 +93,36 @@ export default {
   },
   methods: {
     registerReview() {
-      const axios = require("axios");
-      (async () => {
-        await axios({
-          method: "POST",
-          url: "http://104.198.57.17:5000/post_review",
-          data: {
-            uid: this.account.uid,
-            product_id: this.product_id,
-            usability: this.usability,
-            sound: this.sound,
-            visual: this.visual,
-            comfortable: this.comfortable,
-            blocking: this.blocking,
-            bass: this.bass
-          }
-        })
-          .then(response => (this.info = response.data))
-          .catch();
-        if (this.info == "success") {
-          alert("登録が完了しました");
+      if (!this.account.uid) {
+        var res = confirm("ログインしてください");
+        if (res == true) {
+          // OKなら移動
+          window.location.href = "./login";
         }
-      })();
+      } else {
+        const axios = require("axios");
+        (async () => {
+          await axios({
+            method: "POST",
+            url: "http://104.198.57.17:5000/post_review",
+            data: {
+              uid: this.account.uid,
+              product_id: this.product_id,
+              usability: this.usability,
+              sound: this.sound,
+              visual: this.visual,
+              comfortable: this.comfortable,
+              blocking: this.blocking,
+              bass: this.bass
+            }
+          })
+            .then(response => (this.info = response.data))
+            .catch();
+          if (this.info == "success") {
+            alert("登録が完了しました");
+          }
+        })();
+      }
     }
   }
 };
