@@ -1,6 +1,7 @@
 # Sound for You
 
 - イヤホンサイトのデモ
+  - vueを用いて作成
 
 ## Project setup
 
