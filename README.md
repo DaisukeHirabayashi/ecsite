@@ -1,5 +1,7 @@
 # Sound for You
 
+- イヤホンサイトのデモ
+
 ## Project setup
 
 ```
